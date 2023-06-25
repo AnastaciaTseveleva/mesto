@@ -1,0 +1,15 @@
+.profile__status {
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+@media screen and (max-width: 768px) {
+    .profile__status  {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+    }
+  }
