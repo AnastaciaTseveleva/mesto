@@ -2,10 +2,9 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    border-bottom: 1px solid #ccc; /* Линия снизу */
-    border: none; /* Убираем рамку */
-    border-bottom: 1px solid #ccc; /* Линия снизу */
-    background: transparent; /* Прозрачный фон */
+    border-bottom: 1px solid #ccc; 
+    border: none;
+    background: transparent;
     margin: 0px 36px 30px;
 }
 @media screen and (max-width: 568px) {
