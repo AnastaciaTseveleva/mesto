@@ -31,5 +31,5 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
-@import url(../blocks/line/__header/line__header.css);
-@import url(../blocks/line/__input/line__input.css);
+@import url(../blocks/popup/__line/popup__line.css);
+@import url(../blocks/line/line.css);
