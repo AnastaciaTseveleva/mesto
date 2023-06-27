@@ -1,13 +1,6 @@
 .element__like-button {
-    margin-right: 20px;
-    margin-top: 30px;
-    transition: opacity 0.3s ease;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
     
-}
-.element__like-button:hover {
-    opacity: 60%;
-}
-.element__like-button:active {
-    opacity: 100%;
-    background-image: url(../../../images/Union.svg);
-}

@@ -4,8 +4,10 @@
     line-height: 17px;
     border: none;
     background: transparent;
-    margin: 0px 36px 30px;
-    border-bottom: 1px solid #ccc;
+    margin-top: 0px;
+    margin-left: 36px;
+    margin-bottom: 13px;
+    padding: 0;
 }
 @media screen and (max-width: 568px) {
     .popup__input {

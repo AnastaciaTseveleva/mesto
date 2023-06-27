@@ -4,8 +4,14 @@
     background-color: #000000;
     border: none;
     border-radius: 2px;
-    margin: 18px auto 0;
+    margin: 15px auto 35px;
     transition: opacity 0.3s ease;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    padding: 0;
+    cursor:pointer;
 }
 .popup__save-button:hover {
     opacity: 80%;
@@ -16,4 +22,4 @@
         width: 238px;
         height: 46px;
     }
-  }
+}
