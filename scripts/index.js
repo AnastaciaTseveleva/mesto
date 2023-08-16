@@ -27,9 +27,9 @@ const popupCloseBtn = document.querySelector('.popup__close-button');
 const popupCloseBtnEdit = document.querySelector('.popup-edit__close-button');
 const popupCloseBtnAdd = document.querySelector('.popup-add__close-button');
 
+const card = document.getElementById('card-template');
 /**добавляем карточки на страницу*/
 function renderCard(name, link){
-  const card = document.getElementById('card-template');
   const cardTemplate = card.content.cloneNode(true);
   const img = cardTemplate.querySelector('.element__img');
   const text = cardTemplate.querySelector('.element__text')
@@ -60,9 +60,6 @@ function renderCard(name, link){
     openPopup(popupImg)
   })
 
-  closePopupImg.addEventListener('click', () => {
-    closePopup(popupImg)
-  })
 
   return cardTemplate;
 }
@@ -73,7 +70,10 @@ initialCards.forEach((initialCard) => {
   elementsContainer.append(render);
 })
 
-
+/**Закрыть изображение */
+closePopupImg.addEventListener('click', () => {
+  closePopup(popupImg)
+})
 
 /**открыть попап*/
 function openPopup(popup){
@@ -83,7 +83,7 @@ function openPopup(popup){
 /**закрыть попап*/
 function closePopup(popup){
   popup.classList.remove('popup_opened');
-}
+} 
 
 /**заносим изначальные данные в попап*/
 editButton.addEventListener('click', () => {
