@@ -4,7 +4,7 @@
     background-color: #000000;
     border: none;
     border-radius: 2px;
-    margin: 21px auto 34px;
+    margin: 47px 0 0 0;
     transition: opacity 0.3s ease;
     font-weight: 400;
     font-size: 18px;
@@ -18,7 +18,8 @@
 }
 @media screen and (max-width: 568px) {
     .popup__save-button {
-        margin: 18px auto 0;
+        bottom: -30px;
+        right: 22px;
         width: 238px;
         height: 46px;
     }
@@ -29,3 +30,10 @@
         line-height: 17px;
     }
 }
+.popup__save-button_disabled{
+    background-color: #FFF;
+    cursor: default;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.2);
+  }

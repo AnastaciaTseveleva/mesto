@@ -4,9 +4,7 @@
     line-height: 17px;
     border: none;
     background: transparent;
-    margin-top: 0px;
-    margin-left: 36px;
-    margin-bottom: 30px;
+    margin: 43px 0 0 0;
     padding: 0;
     height: 27px;
     width: 358px;
@@ -14,10 +12,13 @@
 }
 @media screen and (max-width: 568px) {
     .popup__input {
-        margin: 0px 22px 27px;
         width: 238px;
+        margin-top: 30px;
     }
   }
 .popup__input:focus{
     outline: none;
+}
+.popup__input_type_error{
+    border-bottom-color: red;
 }

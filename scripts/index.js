@@ -28,6 +28,7 @@ const popupCloseBtnEdit = document.querySelector('.popup-edit__close-button');
 const popupCloseBtnAdd = document.querySelector('.popup-add__close-button');
 
 const card = document.getElementById('card-template');
+
 /**добавляем карточки на страницу*/
 function renderCard(name, link){
   const cardTemplate = card.content.cloneNode(true);
@@ -78,7 +79,19 @@ closePopupImg.addEventListener('click', () => {
 /**открыть попап*/
 function openPopup(popup){
   popup.classList.add('popup_opened');
+
+  document.addEventListener('keydown', closeByEscape);
 }
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  }
+}
+
 
 /**закрыть попап*/
 function closePopup(popup){
@@ -123,11 +136,43 @@ function handleAddSubmit (evt) {
   const newCard = renderCard(name, link);
   elementsContainer.prepend(newCard, elementsContainer.firstChild)
 
-  evt.target.reset()
+  linkImg.value = '';
+  nameImg.value = '';
   closePopup(popupAdd);
 }
 
-submitPopupAdd.addEventListener('submit', handleAddSubmit)
+submitPopupAdd.addEventListener('submit', handleAddSubmit);
 submitPopupEdit.addEventListener('submit', handleFormSubmit)
 
-popupCloseBtn.addEventListener('click', closePopup);
+
+
+/**Закрытие попап на оверлей */
+popupImg.addEventListener('click', (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popupImg)
+  }
+})
+
+popupAdd.addEventListener('click', (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popupAdd)
+  }
+})
+
+popupEdit.addEventListener('click', (evt) => {
+  if (evt.currentTarget === evt.target) {
+    closePopup(popupEdit)
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+

@@ -32,9 +32,16 @@
             <button class="popup__close-button popup-edit__close-button" type="button"></button>
             <h2 class="popup__header ">Редактировать профиль</h2>
             <form class="popup__form popup-edit__form" action="" name="form">
-                <input class="popup__input popup__input_name_edit" type="text" name="name">
-                <input class="popup__input popup__input_status_edit" type="text" name="status">
-                <button class="popup__save-button" type='submit'>Сохранить</button>
+                <fieldset class="popup__set">
+                    <input class="popup__input popup__input_name_edit" id="name-input" type="text" name="name" required minlength="2">
+                    <span class='popup__input-error name-input-error' id='caption-error'></span>
+    
+                    <input class="popup__input popup__input_status_edit" id="staus-input" type="text" name="status" required minlength="2">
+                    <span class='popup__input-error staus-input-error' id='caption-error'></span>
+    
+                    <button class="popup__save-button popup__save-button_edit popup__save-button_disabled" type='submit'>Сохранить</button>
+                </fieldset>
+
             </form>
         </div>
     </div>
@@ -51,10 +58,17 @@
         <div class="popup__container">
             <button class="popup__close-button popup-add__close-button" type="button"></button>
             <h2 class="popup__header">Новое место</h2>
-            <form class="popup__form popup-add__form" action="" name="form">
-                <input class="popup__input popup__input_name_add" id="nameImg" type="text" name="name" placeholder="Название">
-                <input class="popup__input popup__input_link_add" type="url" id="linkImg" name="link" placeholder="Ссылка на картинку">
-                <button class="popup__save-button" type='submit'>Сохранить</button>
+
+            <form class="popup__form popup-add__form" action="" name="form" novalidate>
+                <fieldset class="popup__set">
+                    <input class="popup__input popup__input_name_add" id="caption-input" type="text" name="caption" placeholder="Название"  required minlength="2">
+                    <span class='popup__input-error caption-input-error' id='caption-error'>f</span>
+    
+                    <input class="popup__input popup__input_link_add" type="url" id="link-input" name="link" placeholder="Ссылка на картинку"  required>
+                    <span class='popup__input-error link-input-error' id="link-error">gf</span>
+    
+                    <button class="popup__save-button popup__save-button_add popup__save-button_disabled" type='submit'>Сохранить</button>
+                </fieldset>
             </form>
         </div>
     </div>
@@ -68,6 +82,7 @@
             </div>
         </article>
     </template>
+    <script src="scripts/validate.js"></script>
     <script src="scripts/cards.js"></script>
     <script src="scripts/index.js"></script>
 </body>
