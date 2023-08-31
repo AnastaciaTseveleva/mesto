@@ -6,7 +6,6 @@ const elementsContainer = document.querySelector('.elements'); //разметк�
 const popupImg = document.querySelector('.popup-img');
 const fullImage = popupImg.querySelector('.popup-img__full');
 const fullText = popupImg.querySelector('.popup-img__text');
-const closePopupImg = popupImg.querySelector('.popup-img__close-button');
 
 /**Переменные для Edit */
 const editButton = document.querySelector('.profile__edit-button');
@@ -75,13 +74,14 @@ initialCards.forEach((initialCard) => {
 function openPopup(popup){
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
-  document.addEventListener('click', handleOverlayClick);
+  popup.addEventListener('click', handleOverlayClick);
 }
 
 /**закрыть попап*/
 function closePopup(popup){
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
+  popup.removeEventListener('click', handleOverlayClick);
 } 
 
 /**Закрыть попап на Esc */
@@ -96,13 +96,11 @@ function closeByEscape(evt) {
 
 /**Закрытие попап на оверлей */
 function handleOverlayClick(evt) {
-  console.log('shhs')
-  const openedPopup = document.querySelector('.popup_opened');
-  if (openedPopup === evt.target) {
-    closePopup(openedPopup);
+    if (evt.currentTarget === evt.target) {
+      closePopup(evt.target);
+    }
   }
-}
-
+  
 /**Закрыть папапы */
 closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап 
