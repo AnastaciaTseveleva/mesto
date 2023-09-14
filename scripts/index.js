@@ -1,11 +1,7 @@
 "use strict";
-
-const elementsContainer = document.querySelector('.elements'); //разметка
-
-/**переменные для изображения */
-const popupImg = document.querySelector('.popup-img');
-const fullImage = popupImg.querySelector('.popup-img__full');
-const fullText = popupImg.querySelector('.popup-img__text');
+import {Card} from './Card.js';
+export {popupImage, popupLinkImage, popupTextImage, openPopup};
+import {FormValidator} from './FormValidator.js'
 
 /**Переменные для Edit */
 const editButton = document.querySelector('.profile__edit-button');
@@ -15,74 +11,66 @@ const nameInput = document.querySelector('.popup__input_name_edit');
 const jobInput = document.querySelector('.popup__input_status_edit');
 const popupEdit = document.querySelector('.popup-edit');
 const submitPopupEdit = document.querySelector('.popup-edit__form');
-console.log('hhhhh')
 
 /**Переменные для Add */
 const popupAdd = document.querySelector('.popup-add');
 const addBtn = document.querySelector('.profile__add-button');
-const linkImg = document.querySelector('.popup__input_link_add');
-const nameImg = document.querySelector('.popup__input_name_add');
+const linkImgInput = document.querySelector('.popup__input_link_add');
+const nameImgInput = document.querySelector('.popup__input_name_add');
 const submitPopupAdd = document.querySelector('.popup-add__form');
-const saveAddButton = document.querySelector('.popup__save-button_add')
 
 /** Переменные для закрытия попапа  */
 // находим все крестики проекта по универсальному селектору
 const closeButtons = document.querySelectorAll('.popup__close-button');
+const popupList = document.querySelectorAll('.popup')
 
-const card = document.querySelector('.element__template');
+/**переменные для изображения */
+const popupImage = document.querySelector('.popup-img');
+const popupLinkImage = document.querySelector('.popup-img__full');
+const popupTextImage = document.querySelector('.popup-img__text');
 
-/**добавляем карточки на страницу*/
-function createCard(name, link){
-  const cardTemplate = card.content.cloneNode(true);
-  const img = cardTemplate.querySelector('.element__img');
-  const text = cardTemplate.querySelector('.element__text');
-  const like = cardTemplate.querySelector('.element__like-img');
-  const element = cardTemplate.querySelector('.element');
-  const trash = cardTemplate.querySelector('.element__trash-img');
+const cardsContainer = document.querySelector('.elements');
 
-  img.alt = name;
-  img.src = link;
-  text.textContent = name;
-
-  /**like*/
-  like.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-img_active');
- }); 
-
-  /**trash*/
-  trash.addEventListener('click', function () {
-    element.remove();
-  }); 
-
-  /**открыть-закрыть фото*/
-  img.addEventListener('click', function (){
-    fullImage.src = link;
-    fullText.textContent = name;
-    fullImage.alt = name;
-    openPopup(popupImg);
-  })
-
-  return cardTemplate;
+/**Функция создает новую карточку и отдает ее функции generateCard */
+function createCard(cards){
+  // Создадим экземпляр карточки
+  const card = new Card(cards, '.element__template');
+  //возвращваем экземпляр карточки в generateCard
+  return card.generateCard();
 }
 
-/**массив карточек выводится на страницу*/
-initialCards.forEach((initialCard) => {
-  const render = createCard(initialCard.name, initialCard.link);
-  elementsContainer.append(render);
-})
+/**Колбек функция перебирает все карточки из данного массива и добаляет их в дом */
+initialCards.forEach((cards) => {
+  //передаем карточки в ф-ю 
+  createCard(cards);
+
+  // Добавляем в DOM
+  cardsContainer.append(createCard(cards));
+});
+
+/** добавить новую карточку*/
+function handleAddFormSubmit (evt) {
+  evt.preventDefault(); 
+
+  const newCard = {link: linkImgInput.value, name: nameImgInput.value}
+
+  createCard(newCard, '.element__template');//передаем куда добавить элемент и сам элемент newCard(имя и ссылка) в createCard
+  cardsContainer.prepend(createCard(newCard));
+
+  evt.target.reset(); //очищаем поля
+  closePopup(popupAdd);
+}
 
 /**открыть попап*/
 function openPopup(popup){
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
-  popup.addEventListener('click', handleOverlayClick);
 }
 
 /**закрыть попап*/
 function closePopup(popup){
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
-  popup.removeEventListener('click', handleOverlayClick);
 } 
 
 /**Закрыть попап на Esc */
@@ -97,11 +85,16 @@ function closeByEscape(evt) {
 
 /**Закрытие попап на оверлей */
 function handleOverlayClick(evt) {
-    if (evt.currentTarget === evt.target) {
-      closePopup(evt.target);
-    }
+  const openedPopup = document.querySelector('.popup_opened');
+  if (openedPopup === evt.target) {
+    closePopup(openedPopup);
   }
-  
+}
+
+popupList.forEach(popup => {
+  popup.addEventListener('click', handleOverlayClick);
+}) 
+
 /**Закрыть папапы */
 closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап 
@@ -114,9 +107,8 @@ closeButtons.forEach((button) => {
 editButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileStatus.textContent;
+  editForm.hideInputError();
   openPopup(popupEdit);
-  hideError(submitPopupEdit, nameInput, validationConfig);
-  hideError(submitPopupEdit, jobInput, validationConfig);
 })
 
 /**статус и имя выводим на страницу*/
@@ -127,23 +119,8 @@ function handleEditFormSubmit (evt) {
   closePopup(popupEdit);
 }
 
-/** добавить новую карточку*/
-function handleAddFormSubmit (evt) {
-  evt.preventDefault(); 
-
-  const link = linkImg.value;
-  const name = nameImg.value;
-  const newCard = createCard(name, link);
-
-  elementsContainer.prepend(newCard, elementsContainer.firstChild);
-
-  evt.target.reset(); 
-  
-  closePopup(popupAdd);
-  disableButton(saveAddButton, validationConfig);
-}
-
 addBtn.addEventListener('click', () => {
+  addForm.hideInputError();
   openPopup(popupAdd);
 })
 submitPopupAdd.addEventListener('submit', handleAddFormSubmit);
@@ -158,5 +135,10 @@ const validationConfig = {
   errorClass: 'popup__input-error_active'
 }; 
 
-enableValidation(validationConfig);
+const editForm = new FormValidator(submitPopupEdit, validationConfig);
+editForm.enableValidation();
+
+const addForm = new FormValidator(submitPopupAdd, validationConfig)
+addForm.enableValidation();
+
 
