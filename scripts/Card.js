@@ -3,7 +3,6 @@ export class Card{
   constructor(data, templateSelector){
     this._link = data.link;
     this._name = data.name;
-    this._alt = data.alt;
     this._templateSelector = templateSelector;
   }
 
@@ -26,23 +25,23 @@ export class Card{
 
     // Добавим данные
     this._element.querySelector('.element__img').src = this._link;
-    this._element.querySelector('.element__img').alt = this._alt;
+    this._element.querySelector('.element__img').alt = this._name;
     this._element.querySelector('.element__text').textContent = this._name;
     // Вернём элемент наружу
     return this._element;
   }
   _setEventListeners() {
-    this._element.querySelector('.element__img').addEventListener('click', this._setOpenPopupEventListener);//большое изображение
-    this._element.querySelector('.element__trash-img').addEventListener('click', this._hendleDeleteCard);
+    this._element.querySelector('.element__img').addEventListener('click', this._handleImageClick);//большое изображение
+    this._element.querySelector('.element__trash-img').addEventListener('click', this._handleDeleteCard);
     this._element.querySelector('.element__like-img').addEventListener('click', this._handleLikeCard);
     }
-  _setOpenPopupEventListener = () => {
+  _handleImageClick = () => {
     popupLinkImage.src = this._link;
     popupTextImage.textContent = this._name;
-    popupLinkImage.alt = this._alt;
+    popupLinkImage.alt = this._name;
     openPopup(popupImage);
   }
-  _hendleDeleteCard = () => {
+  _handleDeleteCard = () => {
     this._element.remove();
   }
 

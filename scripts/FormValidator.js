@@ -12,7 +12,7 @@ export class FormValidator{
 
 /**функции блокировки и разблокировки кнопки "Отправить"*/
   _toggleButtonState(){
-    if (this._hasInvalidInput(this._inputList)) {
+    if (this._hasInvalidInput()) {
       this.disableButton();
     } else {
       this._enableButton();
@@ -77,7 +77,7 @@ export class FormValidator{
 
   /**Функция сброса ошибки и заблокировать кнопку при повторном открытии формы */
   hideInputError(inputElement){
-    this._toggleButtonState(this._inputList);
+    this._toggleButtonState();
     
     this._inputList.forEach((inputElement) => {
       this._hideError(inputElement);

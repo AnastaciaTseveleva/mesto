@@ -32,20 +32,20 @@ const popupTextImage = document.querySelector('.popup-img__text');
 const cardsContainer = document.querySelector('.elements');
 
 /**Функция создает новую карточку и отдает ее функции generateCard */
-function createCard(cards){
+function createCard(card){
   // Создадим экземпляр карточки
-  const card = new Card(cards, '.element__template');
+  const newCard = new Card(card, '.element__template');
   //возвращваем экземпляр карточки в generateCard
-  return card.generateCard();
+  return newCard.generateCard();
 }
 
 /**Колбек функция перебирает все карточки из данного массива и добаляет их в дом */
-initialCards.forEach((cards) => {
+initialCards.forEach((card) => {
   //передаем карточки в ф-ю 
-  createCard(cards);
+  createCard(card);
 
   // Добавляем в DOM
-  cardsContainer.append(createCard(cards));
+  cardsContainer.append(createCard(card));
 });
 
 /** добавить новую карточку*/
