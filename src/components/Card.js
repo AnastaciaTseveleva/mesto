@@ -1,4 +1,4 @@
-import {popupImage, popupLinkImage, popupTextImage, openPopup} from './index.js';
+import {popupLinkImage, popupTextImage, PopupImage} from '../scripts/index.js';
 export class Card{
   constructor(data, templateSelector){
     this._link = data.link;
@@ -39,7 +39,7 @@ export class Card{
     popupLinkImage.src = this._link;
     popupTextImage.textContent = this._name;
     popupLinkImage.alt = this._name;
-    openPopup(popupImage);
+    PopupImage.open(this._name, this._link);
   }
   _handleDeleteCard = () => {
     this._element.remove();
