@@ -1,9 +1,10 @@
-import {popupLinkImage, popupTextImage, PopupImage} from '../scripts/index.js';
+import {popupLinkImage, popupTextImage, PopupImage, handleCardClick} from '../pages/index.js';
 export class Card{
-  constructor(data, templateSelector){
+  constructor(data, templateSelector, handleCardClick){
     this._link = data.link;
     this._name = data.name;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick; 
   }
 
   _getTemplate(){
@@ -31,15 +32,12 @@ export class Card{
     return this._element;
   }
   _setEventListeners() {
-    this._element.querySelector('.element__img').addEventListener('click', this._handleImageClick);//большое изображение
+    this._element.querySelector('.element__img').addEventListener('click', () => this._handleImageClick());//большое изображение
     this._element.querySelector('.element__trash-img').addEventListener('click', this._handleDeleteCard);
     this._element.querySelector('.element__like-img').addEventListener('click', this._handleLikeCard);
     }
-  _handleImageClick = () => {
-    popupLinkImage.src = this._link;
-    popupTextImage.textContent = this._name;
-    popupLinkImage.alt = this._name;
-    PopupImage.open(this._name, this._link);
+  _handleImageClick(){
+    this._handleCardClick(this._name, this._link);
   }
   _handleDeleteCard = () => {
     this._element.remove();

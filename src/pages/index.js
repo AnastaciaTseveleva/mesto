@@ -1,9 +1,9 @@
 "use strict";
 import './index.css';
 import {Card} from '../components/Card.js';
-export {popupSelectorImage, popupLinkImage, popupTextImage, PopupImage};
+export {popupSelectorImage, popupLinkImage, popupTextImage, handleCardClick};
 import {FormValidator} from '../components/FormValidator.js';
-import {initialCards} from '../components/cards.js';
+import {initialCards} from '../utils/cards.js';
 import  {Section}  from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
@@ -24,21 +24,23 @@ const popupSelectorImage = document.querySelector('.popup-img');
 const popupLinkImage = document.querySelector('.popup-img__full');
 const popupTextImage = document.querySelector('.popup-img__text');
 
-/**Разметка, куда вставлять карточки */
-const cardsContainer = document.querySelector('.elements');
-
 /**Функция создает новую карточку и отдает ее функции generateCard */
 function createCard(card){
   // Создадим экземпляр карточки
-  const newCard = new Card(card, '.element__template');
+  const newCard = new Card(card, '.element__template', handleCardClick);
   //возвращваем экземпляр карточки в generateCard
   return newCard.generateCard();
 }
+const popupImage = new PopupWithImage('.popup-img');
+popupImage.setEventListeners();
+
+function handleCardClick(name, link) {
+  popupImage.open(name, link)
+};
 const cardList = new Section({items: initialCards, renderer: createCard}, '.elements');
 cardList.renderItems();
 
-const PopupImage = new PopupWithImage('.popup-img');
-PopupImage.setEventListeners();
+
 
 const popupUserInfo = new PopupWithForm('.popup-edit', (formData) => {
   userInfo.setUserInfo({
@@ -68,7 +70,7 @@ const popupNewCard = new PopupWithForm('.popup-add', (formData) => {
     link: formData.link
   };
   const cardElement = createCard(cardData);
-  cardsContainer.prepend(cardElement);
+  cardList.addItem(cardElement);
   popupNewCard.close();
 });
 

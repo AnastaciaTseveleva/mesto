@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     mode: 'development',
-    entry: { main: "./src/scripts/index.js" }, // задаем точку входа
+    entry: { main: "./src/pages/index.js" }, // задаем точку входа
     output: {
       path: path.resolve(__dirname, "dist"), // используем утилиту lkz формированию пути
       filename: "main.js",
