@@ -29,7 +29,7 @@ const popupTextImage = document.querySelector('.popup-img__text');
 /**переменные для авы*/
 const addAvatar = document.querySelector('.profile__avatar');
 const submitPopupAvatar = document.querySelector('.popup-avatar__form');
-const avatarButton = document.querySelector('.popup__save-button_avatar')
+const avatarButton = document.querySelector('.popup-avatar__save-button')
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-77',
