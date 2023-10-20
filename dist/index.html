@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Место</title>
+    <!-- <link rel="stylesheet" href="pages/index.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
+<body class="page">
+    <header class="header line">
+        <img class="header__logo" src="03b78ada3425e9132ff3.svg" alt="Лого">
+    </header>
+    <main class="content">
+        <section class="profile">
+            <img class="profile__avatar" src="74c3c0fb802dcfa83abb.jpg" alt="Аватарка">
+            <div class="profile__info"> 
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button type="button" class="profile__edit-button"></button>  
+                <p class="profile__status">Исследователь океана</p>
+            </div>
+            <button type="button" class="profile__add-button"></button>
+        </section>
+        <section class="elements"></section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+   
+    <div class="popup popup-edit">
+        <div class="popup__container ">
+            <button class="popup__close-button popup-edit__close-button" type="button"></button>
+            <h2 class="popup__header ">Редактировать профиль</h2>
+            <form class="popup__form popup-edit__form" action="" name="editForm">
+                <fieldset class="popup__set">
+                    <input class="popup__input popup__input_name_edit" id="name-input" type="text" name="name" required minlength="2" placeholder="Имя">
+                    <span class='popup__input-error popup__input-error_edit name-input-error' id='name-error'></span>
+    
+                    <input class="popup__input popup__input_status_edit" id="status-input" type="text" name="status" required minlength="2" placeholder="О себе">
+                    <span class='popup__input-error popup__input-error_edit status-input-error' id='status-error'></span>
+    
+                    <button class="popup__save-button popup__save-button_edit popup__save-button_disabled" type='submit'>Сохранить</button>
+                </fieldset>
+
+            </form>
+        </div>
+    </div>
+    <div class="popup popup-img">
+        <div class="popup-img__container">
+            <button class="popup-img__close-button popup__close-button" type="button"></button>
+            <figure class="popup-img__figure">
+               <img class="popup-img__full" src="." alt="">
+                <figcaption class="popup-img__text"></figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="popup popup-add">
+        <div class="popup__container">
+            <button class="popup__close-button popup-add__close-button" type="button"></button>
+            <h2 class="popup__header">Новое место</h2>
+            <form class="popup__form popup-add__form" action="" name="addForm" novalidate>
+                <fieldset class="popup__set">
+                    <input class="popup__input popup__input_name_add" id="caption-input" type="text" name="caption" placeholder="Название"  required minlength="2">
+                    <span class='popup__input-error caption-input-error' id='caption-error'>f</span>
+    
+                    <input class="popup__input popup__input_link_add" type="url" id="link-input" name="link" placeholder="Ссылка на картинку"  required>
+                    <span class='popup__input-error link-input-error' id="link-error">gf</span>
+    
+                    <button class="popup__save-button popup__save-button_add popup__save-button_disabled" type='submit'>Сохранить</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+     <template class="element__template">
+        <article class="element">
+            <button type="button" class="element__trash-button"><img class="element__trash-img" src="f7144a3e2eb8b093de83.svg" alt="Корзина"></button>
+            <img class="element__img" src="." alt="">
+            <div class="element__container">
+                <h2 class="element__text"></h2>
+                <button type="button" class="element__like-button"><img class="element__like-img" src="87ed371465c7a6a1cd01.svg" alt="Лайк"><span class='element__like-counter'></span></button>
+            </div>
+        </article>
+    </template>
+    <div class="popup popup-delete">
+        <div class="popup__container popup-delete__container">
+            <button class="popup__close-button popup-delete__close-button" type="button"></button>
+            <span class="popup-delete__text">Вы уверенны?</span>
+            <button class="popup-delete__option" type='submit'>Да</button>
+        </div>
+    </div>
+    <div class="popup popup-avatar">
+        <div class="popup-avatar__container">
+            <button class="popup__close-button popup-avatar__close-button" type="button"></button>
+            <h2 class="popup__header">Обновить аватар</h2>
+            <form class="popup__form popup-avatar__form" action="" name="avatarForm" novalidate>
+                <input class="popup__input popup-avatar__input popup__input_link_avatar" type="url" id="avatar-input" name="avatar" placeholder="Ссылка на картинку"  required>
+                <span class='popup__input-error avatar-input-error' id="avatar-error">gf</span>
+                <button class="popup__save-button popup-avatar__save-button popup__save-button_disabled" type='submit'>Сохранить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

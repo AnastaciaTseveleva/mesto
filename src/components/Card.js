@@ -45,8 +45,8 @@ export class Card{
     this._elemImg.alt = this._name;
     this._element.querySelector('.element__text').textContent = this._name;
     
-    this._likeVisibl();
-    this._trashVisiblButton();//видно ли мусорку
+    this._toggleLikeVisibility();
+    this._handleTrashButtonVisibility();//видно ли мусорку
     // Вернём элемент наружу
     return this._element;
   }
@@ -85,12 +85,12 @@ export class Card{
     return this._data._id;
   }
 
-  _likeVisibl(){
+  _toggleLikeVisibility(){
     if(this._likes.some((user) => this._myId === user._id)){
       this._likesImg.classList.add('element__like-img_active');
     }
   }
-  _trashVisiblButton(){
+  _handleTrashButtonVisibility(){
     if (this._myId !== this._ownerId ){
       this._trashButton.remove();//удаляем картинку корзины
     }
