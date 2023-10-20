@@ -5,10 +5,10 @@ export class PopupWithDialog extends Popup{
         super(popupSelector);
         this._buttonSubmit = document.querySelector('.popup-delete__option');
     }
-    open(cardCallback){
+    open(itemCallback){
         super.open();
-        this.cardCallback = cardCallback;
-        this._buttonSubmit.addEventListener('click', this.cardCallback)
+        this.itemCallback = itemCallback;
+        this._buttonSubmit.addEventListener('click', this.itemCallback)
     }
     close(){
         super.close()

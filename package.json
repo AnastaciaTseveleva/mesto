@@ -12,12 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.17.3"
+  },
+  "devDependencies": {
     "babel-plugin-react-css-modules": "^5.2.6",
     "cssnano": "^6.0.1",
     "jquery": "^3.7.1",
-    "mini-css-extract-plugin": "^2.7.6"
-  },
-  "devDependencies": {
+    "mini-css-extract-plugin": "^2.7.6",
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.22.20",
     "autoprefixer": "^10.4.16",

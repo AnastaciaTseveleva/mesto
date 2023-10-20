@@ -76,7 +76,7 @@ export class FormValidator{
   }
 
   /**Функция сброса ошибки и заблокировать кнопку при повторном открытии формы */
-  hideInputError(inputElement){
+  hideInputError(){
     this._toggleButtonState();
     
     this._inputList.forEach((inputElement) => {

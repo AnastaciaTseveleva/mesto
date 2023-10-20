@@ -8,10 +8,10 @@ export class Section{
             this._renderer(item)
         });
     }
-    appendCard(card){
-        this._containerSelector.append(card);
+    appendItem(item){
+        this._containerSelector.append(item);
     }
-    prependCard(card){
-        this._containerSelector.prepend(card);
+    prependItem(item){
+        this._containerSelector.prepend(item);
     }
 }

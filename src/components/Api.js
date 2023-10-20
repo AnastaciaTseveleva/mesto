@@ -3,19 +3,19 @@ export class Api{
         this._url = url;
         this._headers = headers;
     }
+    _getResponseData(res) {
+      if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`);
+      }
+      return res.json();
+    } 
     //Загрузка карточек с сервера
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
             headers: this._headers,
             method: 'GET',
           })
-          .then(response => {
-            if (response.ok) {
-                return response.json();            
-            } else {
-                Promise.reject(`Ошибка ${response.status} ${response.statusText}`);
-            }
-          });
+          .then(res => this._getResponseData(res))
       }
     // Загрузка информации о пользователе с сервера
     getUserInfo() {
@@ -23,13 +23,7 @@ export class Api{
             headers: this._headers,
             method: 'GET'
           })
-          .then(response => {
-            if (response.ok) {
-              return response.json();
-            } else {
-                Promise.reject(`Ошибка ${response.status} ${response.statusText}`);
-            }
-          });
+          .then(res => this._getResponseData(res))
       }
     //Редактирование профиля
     updateUserProfile({ name, about }) {
@@ -38,13 +32,7 @@ export class Api{
         headers: this._headers,
         body: JSON.stringify({ name, about })
       })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(`Ошибка ${response.status} ${response.statusText}`);
-        }
-      });
+      .then(res => this._getResponseData(res))
     }
     // Метод для добавления новой карточки
     addCard({ name, link}) {
@@ -53,53 +41,28 @@ export class Api{
         headers: this._headers,
         body: JSON.stringify({ name, link})
       })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(`Ошибка ${response.status} ${response.statusText}`);
-        }
-      });
-        
+      .then(res => this._getResponseData(res))
   }
     setLike(cardId) {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: this._headers
       })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(`Ошибка ${response.status} ${response.statusText}`);
-        }
-      });
+      .then(res => this._getResponseData(res))
     }
     delLike(cardId){
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'DELETE',
         headers: this._headers
       })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(`Ошибка ${response.status} ${response.statusText}`);
-        }
-      });
+      .then(res => this._getResponseData(res))
     }
     deleteCard(cardId){
       return fetch(`${this._url}/cards/${cardId}`, {
         method: 'DELETE',
         headers: this._headers
       })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(`Ошибка ${response.status} ${response.statusText}`);
-        }
-      });
+      .then(res => this._getResponseData(res))
     }
     setAvatar(link){
       return fetch(`${this._url}/users/me/avatar`, {
@@ -107,13 +70,7 @@ export class Api{
         headers: this._headers,
         body: JSON.stringify( link )
       })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(`Ошибка ${response.status} ${response.statusText}`);
-        }
-      });
+      .then(res => this._getResponseData(res))
     }
 
 }

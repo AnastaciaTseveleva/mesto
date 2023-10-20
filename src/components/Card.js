@@ -34,17 +34,17 @@ export class Card{
 
     this._setEventListeners();
 
-    // Добавим данные
-    this._element.querySelector('.element__img').src = this._link;
-    this._element.querySelector('.element__img').alt = this._name;
-    this._element.querySelector('.element__text').textContent = this._name;
-    
+    this._elemImg = this._element.querySelector('.element__img');
     this._likesNumber = this._element.querySelector('.element__like-counter');
     this._trashButton = this._element.querySelector('.element__trash-img');
     this._likesImg = this._element.querySelector('.element__like-img');
-
     this._likesNumber.textContent = this._likes.length;//цифры лайка
 
+    // Добавим данные
+    this._elemImg.src = this._link;
+    this._elemImg.alt = this._name;
+    this._element.querySelector('.element__text').textContent = this._name;
+    
     this._likeVisibl();
     this._trashVisiblButton();//видно ли мусорку
     // Вернём элемент наружу
@@ -81,7 +81,7 @@ export class Card{
   }
 
   //айди карточки
-  idCard(){
+  getCardId(){
     return this._data._id;
   }
 
